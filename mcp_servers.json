@@ -1,0 +1,30 @@
+{
+  "servers": {
+    "local": {
+      "type": "builtin",
+      "enabled": false,
+      "description": "已禁用原模板的 TODO、计算器和天气工具"
+    },
+    "github": {
+      "type": "stdio",
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "GITHUB_PERSONAL_ACCESS_TOKEN",
+        "-e",
+        "GITHUB_READ_ONLY=1",
+        "-e",
+        "GITHUB_TOOLS=get_file_contents,search_code,issue_read,search_issues",
+        "ghcr.io/github/github-mcp-server"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
+      },
+      "enabled": true,
+      "description": "GitHub 官方 MCP Server，只读代码与 Issue"
+    }
+  }
+}

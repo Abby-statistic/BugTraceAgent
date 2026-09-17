@@ -1,0 +1,26 @@
+# FastAPI + LangGraph + MCP Starter
+
+Add `alembic/` to your `.gitignore` if you want to exclude migration files from version control, or keep them if you want to track database schema changes.
+
+## Alembic Usage
+
+### Create a new migration
+```bash
+alembic revision --autogenerate -m "Description of changes"
+```
+
+### Apply migrations
+```bash
+alembic upgrade head
+```
+
+### Rollback migrations
+```bash
+alembic downgrade -1
+```
+
+## Important Notes
+
+- Make sure your DATABASE_URL uses `postgresql+asyncpg://` (not `postgresql://` or `postgresql+psycopg2://`)
+- The `env.py` file is configured to work with async SQLAlchemy and SQLModel
+- Migrations are automatically generated based on SQLModel models in `app/db/models.py`
